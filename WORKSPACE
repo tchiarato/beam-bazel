@@ -14,12 +14,21 @@ load("@rules_jvm_external//:defs.bzl", "maven_install")
 
 maven_install(
     artifacts = [
-        "junit:junit:4.12",
-        "androidx.test.espresso:espresso-core:3.1.1",
+        "org.apache.beam:beam-sdks-java-io-google-cloud-platform:2.19.0",
+        "org.apache.beam:beam-sdks-java-core:2.19.0",
+        "org.apache.beam:beam-runners-direct-java:2.19.0",
+        "org.hamcrest:hamcrest-core:1.3",
         "org.hamcrest:hamcrest-library:1.3",
+        "org.slf4j:slf4j-api:1.7.25",
+        "org.slf4j:slf4j-jdk14:1.7.25",
+        "junit:junit:4.12",
     ],
     repositories = [
+        "https://repo1.maven.org/maven2/",
         "https://maven.google.com",
-        "https://repo1.maven.org/maven2",
     ],
+    maven_install_json = "//:maven_install.json",
 )
+
+load("@maven//:defs.bzl", "pinned_maven_install")
+pinned_maven_install()
